@@ -5,6 +5,10 @@ function countLetter(letter, sentence) {
         Other things to consider: the input to the function must be a letter and a string. If the first input is not a letter, output to the user invalid input
     */
 
+    if (letter.length!=1) {
+        return undefined
+    }
+
 
     let result = 0;
 
@@ -12,7 +16,12 @@ function countLetter(letter, sentence) {
     // If letter is a single character, count how many times a letter has occurred in a given sentence then return count.
     // If letter is invalid, return undefined.
 
-    
+    for (let i=0; i<sentence.length; i++) {
+        if(sentence.charAt(i) == letter) {
+            result++
+        }
+    }
+    return result
 }
 
 
@@ -26,6 +35,21 @@ function isIsogram(text) {
     // The function should disregard text casing before doing anything else.
     // If the function finds a repeating letter, return false. Otherwise, return true.
 
+    //ako
+    //encounteredLetter = [a, k, ]
+
+
+    let encounteredLetter = new Set();
+
+    for (let i=0; i<text.length; i++) {
+        if (encounteredLetter.has(text.charAt(i))) {
+            return false;
+        } else {
+            encounteredLetter.add(text.charAt(i))
+        }
+    }
+
+    return true;
     
 }
 
@@ -42,6 +66,15 @@ function purchase(age, price) {
     // Return the discounted price (rounded off) for students aged 13 to 21 and senior citizens. (20% discount)
     // Return the rounded off price for people aged 22 to 64.
     // The returned value should be a string.
+
+    if((age >= 13 && age <= 21) || age >= 65){
+        let discount = price * 0.80
+        return discount.toFixed(2).toString()
+    } else if(age >= 22 && age <= 64) {
+        return price.toFixed(2).toString()
+    } else if(age < 13){
+        return undefined
+    }
     
 }
 
@@ -66,6 +99,8 @@ function findHotCategories(items) {
     // The expected output after processing the items array is ['toiletries', 'gadgets'].
     // Only putting return ['toiletries', 'gadgets'] will not be counted as a passing test during manual checking of codes.
 
+
+
 }
 
 function findFlyingVoters(candidateA, candidateB) {
@@ -84,7 +119,16 @@ function findFlyingVoters(candidateA, candidateB) {
 
     // The expected output after processing the candidates array is ['LIWf1l', 'V2hjZH'].
     // Only putting return ['LIWf1l', 'V2hjZH'] will not be counted as a passing test during manual checking of codes.
-    
+    let sameVoters = {}
+    for(let i=0; i<candidateA.length; i++){
+        for(let j=0; j<candidateB.length; i++){
+            if(candidateA[i] === candidateB[i]){
+                sameVoters++
+            } else{
+                return('All good!')
+            }
+        }
+    }
 }
 
 module.exports = {
