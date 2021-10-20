@@ -99,8 +99,17 @@ function findHotCategories(items) {
     // The expected output after processing the items array is ['toiletries', 'gadgets'].
     // Only putting return ['toiletries', 'gadgets'] will not be counted as a passing test during manual checking of codes.
 
+    
 
-
+    let hotCategory = new Set()
+    
+    for(let i=0; i<items.length; i++){
+         if(items[i].stocks == 0){
+            hotCategory.add(items[i].category)
+        }  
+    }
+    let uniqueHotCategory = Array.from(new Set(hotCategory))
+    return uniqueHotCategory
 }
 
 function findFlyingVoters(candidateA, candidateB) {
@@ -119,16 +128,17 @@ function findFlyingVoters(candidateA, candidateB) {
 
     // The expected output after processing the candidates array is ['LIWf1l', 'V2hjZH'].
     // Only putting return ['LIWf1l', 'V2hjZH'] will not be counted as a passing test during manual checking of codes.
-    let sameVoters = {}
-    for(let i=0; i<candidateA.length; i++){
-        for(let j=0; j<candidateB.length; i++){
-            if(candidateA[i] === candidateB[i]){
-                sameVoters++
-            } else{
-                return('All good!')
+    let sameVoters = new Set()
+        for(let i=0; i<candidateA.length; i++){
+            for(let j=0; j<candidateB.length; j++){
+                if(candidateA[i] == candidateB[j]){
+                    sameVoters.add(candidateA[i])
+                }
             }
         }
-    }
+    
+    let arrayOfSameVoters = Array.from(new Set(sameVoters))
+    return arrayOfSameVoters
 }
 
 module.exports = {
